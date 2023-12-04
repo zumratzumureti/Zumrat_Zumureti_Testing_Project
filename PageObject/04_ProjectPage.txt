@@ -1,0 +1,132 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	No Existing Projects With the Same Name 
+Post Condition	New Project Created
+Tags	Create-New-Project, Edit-Project, Update-Project
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+Project Name= First Project
+Project URL= ProjectUrl
+Project Slug= Project-123
+Project Deployment Target (optional)= No deployment Planned
+Project Description (optional) =  My first testing project
+Visibility Level= Public
+Project Configuration= Initialize repository with a README
+Settings= Change project's name
+
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project .
+	Create template project 
+	Update name of template project
+	Delete template project
+	Valide that message is showing: Project 'First project ' was successfully created.
+
+*** Positive case 1 ***
+
+Creating a project 
+
+Navigate to project page
+	Create a Blank Project
+	Input Project name: First Project
+	Input Project URL: ProjectUrl
+	Input Project slug: Project-123
+	Choose visibility level: Private
+	Verify that Project Deployment can be Settings
+	Verify that Project Configuration can be modified
+	Submit Create Project Form 
+	Validate that message is showing: Project 'First Project' was successfully created
+
+*** Positive Case 2 ***
+
+Updating the project name 
+
+Navigate to Project Page
+	Navigate to Settings Page
+	General Settings
+	Input Project's new name: Second Project
+	Submit Save Changes Page
+	Validate that message is showing: Project 'Second Project' was successfully created
+
+*** Positive Case 3 ***
+
+Deleting the project
+
+Delete The Template Project 
+
+Navigate to Project page
+	Navigate to Settings Page
+	General Settings
+	Expand Advanced Settings
+	Delete Project
+	Fill in Confirmation Page
+	Submit Project Deleting Form 
+	Validate that message is showing: 'Second project' will be deleted on (YYYY/MM/DD). 
+	Verify That Project is no longer present in the list of Active Projects
+
+*** Positive Case 3 ***
+
+Archiving an existing Project
+
+Navigate to Project page
+	Navigate to Settings Page
+	General Settings
+	Expand Advanced Settings
+	Archive Project
+	Fill in Confirmation Page
+	Submit Project Archiving Form
+	Validate that message is showing: 'Active Project' has been successfully archived on (YYYY/MM/DD).
+	Verify That Project is no longer present in the list of Active Projects
+
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+
+*** Negative Test Case 1 ***
+
+Creating a Blank Project With The Previous Same Name 
+
+Create a Blank Project With The Previous Same Name
+
+	Navigate to Project Page
+	Select New Project
+	Create New Project
+	Create Blank Project
+	Input Project name= Second Project
+	Input Project URL = ProjectUrl
+	Input Project Slug= project-123
+	Choose Visibility Level= Private
+	Verify that optional Project Deployment Target can be set
+	Verify that Project Configuration can be modified
+	Submit Create Project Form 
+	Verify that the error error message is showing: 'Project namespace name has already been taken.'
+	Verify that the error message is showing: 'Name has already been taken.'
+	Verify that the error message is showing: 'Path has already been taken.'
+

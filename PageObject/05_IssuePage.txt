@@ -1,0 +1,114 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Project must be created by the user before 
+Post Condition			The issue is created successfully
+Tags	Issue-Creation, Updating-Issue, Delete-Issue
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+Title= Issue Test
+Type= Issue
+Description= Testing out this feature
+Confidentiality= True
+Assignee= Unassigned
+Milestone= No Milestone
+Labels= Documentation, High Priority
+Due Date= Select Due Date
+Edit Issue= Create
+Issue Actions= Delete issue, Update Issue
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue,
+ 	Update name of issue, 
+	Create second issue with privious updated name
+    Delete first issue
+
+*** Positive Case 1 *** 
+
+#Creating an issue
+
+Create issue
+	Navigate to Project Page
+	Navigate to Issues Page
+	Select project to create Issue
+	Input a valid Title First: Issue Test
+	Choose issue type: Issue
+	Verify that Assignee selection is available
+	Verify that Milestones can be chosen
+	Verify that Labels can be added
+	Verify that Due Date can be set
+	Verify that Description can be provided
+	Verify that Confidentiality can be modified
+	Submit Create Issue Form
+	Validate That Message Is Showing: New issue created successfully by [ABCDEF]
+
+*** Positive Test Case 2 ***
+
+# Updating the Name of an Issue
+
+Update Name of Issue
+	Navigate to the Project and Issues Page
+    Navigate to Project Page
+    Navigate to Issues Page
+    Select Issue: Issue Test
+    Edit Issue
+    Update Issue Title: Updated Issue Title [Issue Test 2]
+    Submit Changes
+    Validate That Message Is Showing: Issue title updated to 'Updated Issue Title' by [ABCDEF]
+
+
+*** Positive Test Case 3 ***
+
+#Creating a second issue with previously updated name
+
+Create Second Issue with Previous Updated Name
+    Navigate to Project Page
+    Navigate to Issues Page
+    Select Project: Selected Project
+    Input Issue Title: Updated Issue Title [Issue Test 2]
+    Choose Issue Type: Feature
+    Verify Assignee Selection is Available
+    Verify Milestones can be Chosen
+    Verify Labels can be Added
+    Verify Due Date can be Set
+    Verify Description can be Provided
+    Verify Confidentiality can be Modified
+    Submit Create Issue Form
+    Validate That Message Is Showing: Second issue created successfully by [ABCDEF] with the title 'Updated Issue Title'
+
+*** Positive Test Case 4 ***
+
+#Deleting Issue Test 2 
+
+Delete issue
+	Navigate to Project Page
+	Navigate to Issues Page
+	Select Issue
+	Select Issue Actions
+	Choose Delete issue
+	Confirm Issue Deletion
+	Validate That Message is Showing: The Issue was successfully deleted. 
+
+
+

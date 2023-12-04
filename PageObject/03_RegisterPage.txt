@@ -1,0 +1,152 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open browser
+Post Condition	Close browser
+Tags	Registration, register a new user
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Registration field variables
+
+LoginUrl = https://gitlab.com/users/sign_up
+ValidUsername: abcdef
+ValidPassword: ******
+
+First_Name= ABC
+Last_Name= DEF
+UserName= ABCDEF
+Email= ABC.DEF@outlook.com
+Password= ******
+Invalid_Username= BC
+Taken_Username=ABC
+Invalid_email=abc.defoutlok.com
+Invalid_Password= ***
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps (Think about possible test cases)
+
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Register user with valid username and password 
+
+	Open browser [SignUpURL]	
+	Input First_Name: ABC
+	Input Last_Name: DEF
+	Input UserName: ABCDEF
+	Input Email: abc.def@outlook.com
+	Input Password:******
+	Submit Registration Page
+	Wait Until Page Loads
+	Verify 	Page Should Contain An Identity verification Page
+
+	
+
+# Negative Test examples keywords are below write test process steps for each below test case 
+
+	Register user with same above username,
+		...empty password,
+		...invalid email,
+		...Without recaptcha,
+
+*** Test Case 1 ***
+
+Register User with Existing Username
+
+Attempting to register with Taken Username
+
+Open browser [SignUpURL] 
+Input First_Name: ABC
+Input Last_Name: DEF
+Input Existing Username: ABCDEF
+Input Email: abc.def@outlook.com
+Input Password:******
+Submit Registration Page
+Wait Until Page Loads
+Verify that error message should show: "Username is already taken."
+
+
+*** Test Case 2 ***
+
+Register User with Empty Password
+
+Attempting to register with empty password field
+
+Open browser [SignUpURL] 
+Input First_Name: ABC
+Input Last_Name: DEF
+Input Existing Username: ABCDEF
+Input Email: abc.def@outlook.com
+Input Password: [empty]
+Submit Registration Page
+Wait Until Page Loads
+Verify that error message should show: "Password field is empty."
+
+*** Test Case 3  ***
+
+
+Register User with Invalid Email
+
+Attempting to register with Invalid Email
+
+Open browser [SignUpURL] 
+Input First_Name: ABC
+Input Last_Name: DEF
+Input Existing Username: ABCDEF
+Input Email: abc.defoutlok.com
+Input Password:******
+Submit Registration Page
+Wait Until Page Loads
+Verify that error message should show: "Please provide a valid email address ."
+
+*** Test Case 4 ***
+
+Register User with Invalid Password
+
+Attempting to register with invalid password that doesn't meet requirements
+
+Open browser [SignUpURL] 
+Input First_Name: ABC
+Input Last_Name: DEF
+Input Username: ABCDEF
+Input Email: abc.def@outlook.com
+Input Password: ***
+Submit Registration Page
+Wait Until Page Loads
+Verify that error message should show: "Minimum length is 8 characters"
+
+
+*** Test Case 5 ***
+
+Register user with Invalid Characters in Username
+
+Attempting to register with special characters (Ö) and (Ä) in the Username
+
+Open browser [SignUpURL]
+Input First_Name: ABC0202
+Input Last_Name: DEF
+Input Username: ABCDEFÖÄÄ
+Input Email: abc.def@outlook.com
+Input Password: ******
+Submit Registration Page
+Wait Until Page Loads
+Verify that error message should show: "Please create a username with only alphanumeric characters.."
+
+
